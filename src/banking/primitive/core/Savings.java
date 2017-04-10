@@ -16,11 +16,9 @@ public class Savings extends Account {
 	 * A deposit comes with a fee of 50 cents per deposit
 	 */
 	public boolean deposit(float amount) {
-		if (getState() != State.CLOSED && amount > 0.0f) {
-			balance = balance + amount - 0.50F;
-			if (balance >= 0.0f) {
-				setState(State.OPEN);
-			}
+		if (super.deposit(amount)) {
+			balance = balance - 0.50f;
+			return true;
 		}
 		return false;
 	}
